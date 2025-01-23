@@ -1,4 +1,4 @@
-# WalletConnect RPCs dApp
+# Godot-XCH-dapp-example
 
 This is an example dApp for connecting Godot Game Engine with Sage's WalletConnect commands.
 
