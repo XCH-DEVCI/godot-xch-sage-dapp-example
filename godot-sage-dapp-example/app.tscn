@@ -1,0 +1,199 @@
+[gd_scene load_steps=5 format=3 uid="uid://btnd3152rtl7v"]
+
+[ext_resource type="Script" path="res://root_node.gd" id="1_lsdsu"]
+[ext_resource type="StyleBox" uid="uid://caylan35qcq2b" path="res://disconnected_style.tres" id="3_cfgjb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41t8m"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sh6n4"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lsdsu")
+
+[node name="Game" type="Node2D" parent="."]
+
+[node name="bg" type="Panel" parent="Game"]
+offset_right = 1289.0
+offset_bottom = 729.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_41t8m")
+
+[node name="TextEdit" type="TextEdit" parent="Game"]
+offset_left = 83.0
+offset_top = 232.0
+offset_right = 512.0
+offset_bottom = 560.0
+editable = false
+wrap_mode = 1
+
+[node name="send_xch" type="Button" parent="Game"]
+offset_left = 880.0
+offset_top = 552.0
+offset_right = 1105.0
+offset_bottom = 640.0
+text = "Send TXCH"
+
+[node name="signal_label" type="Label" parent="Game"]
+offset_left = 200.0
+offset_top = 168.0
+offset_right = 392.0
+offset_bottom = 243.0
+text = "Result"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="disconnect" type="Button" parent="Game"]
+offset_left = 992.0
+offset_top = 56.0
+offset_right = 1217.0
+offset_bottom = 144.0
+text = "Disconnect"
+
+[node name="input1" type="TextEdit" parent="Game"]
+offset_left = 592.0
+offset_top = 216.0
+offset_right = 920.0
+offset_bottom = 312.0
+wrap_mode = 1
+
+[node name="input2" type="TextEdit" parent="Game"]
+offset_left = 600.0
+offset_top = 408.0
+offset_right = 928.0
+offset_bottom = 504.0
+wrap_mode = 1
+
+[node name="input3" type="TextEdit" parent="Game"]
+offset_left = 936.0
+offset_top = 216.0
+offset_right = 1264.0
+offset_bottom = 312.0
+wrap_mode = 1
+
+[node name="signal_label2" type="Label" parent="Game"]
+offset_left = 632.0
+offset_top = 160.0
+offset_right = 888.0
+offset_bottom = 235.0
+text = "Address"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="signal_label3" type="Label" parent="Game"]
+offset_left = 632.0
+offset_top = 344.0
+offset_right = 888.0
+offset_bottom = 419.0
+text = "Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="signal_label4" type="Label" parent="Game"]
+offset_left = 960.0
+offset_top = 160.0
+offset_right = 1216.0
+offset_bottom = 235.0
+text = "Memos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="networkID" type="Label" parent="Game"]
+offset_left = 216.0
+offset_right = 488.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="fetch_nft" type="Button" parent="Game"]
+offset_left = 184.0
+offset_top = 88.0
+offset_right = 409.0
+offset_bottom = 176.0
+text = "Fetch NFT"
+
+[node name="nft_label" type="Label" parent="Game"]
+offset_left = 88.0
+offset_top = 560.0
+offset_right = 512.0
+offset_bottom = 592.0
+text = "NFT Display"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nft_container" type="ScrollContainer" parent="Game"]
+custom_minimum_size = Vector2(0, 105)
+offset_left = 88.0
+offset_top = 592.0
+offset_right = 512.0
+offset_bottom = 720.0
+vertical_scroll_mode = 0
+
+[node name="nft_display" type="HBoxContainer" parent="Game/nft_container"]
+custom_minimum_size = Vector2(300, 100)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Entrance" type="Node2D" parent="."]
+visible = false
+
+[node name="bg" type="Panel" parent="Entrance"]
+offset_left = -25.0
+offset_top = -29.0
+offset_right = 1326.0
+offset_bottom = 770.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sh6n4")
+
+[node name="announcement" type="Label" parent="Entrance"]
+offset_left = 166.0
+offset_top = 168.0
+offset_right = 1117.0
+offset_bottom = 536.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "How to Enter the Game:
+(1) Click on Connect Wallet in the upper-right corner.
+(2) Copy the WalletConnect UID displayed.
+(3) Open your Sage Wallet and navigate to Settings.
+(4) Paste the UID into the WalletConnect input field and click the Connect button."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="connect" type="Button" parent="Entrance"]
+offset_left = 1096.0
+offset_top = 8.0
+offset_right = 1272.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 18
+text = "Connect"
+script = ExtResource("1_lsdsu")
+
+[node name="Status" type="Node2D" parent="."]
+
+[node name="Text" type="Label" parent="Status"]
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 288.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 18
+text = "Connection"
+
+[node name="ColorRect" type="Button" parent="Status"]
+offset_left = 107.0
+offset_top = 4.0
+offset_right = 131.0
+offset_bottom = 28.0
+theme_override_styles/normal = ExtResource("3_cfgjb")
+
+[connection signal="pressed" from="Game/send_xch" to="." method="_on_send_xch_pressed"]
+[connection signal="pressed" from="Game/disconnect" to="." method="_on_disconnect_pressed"]
+[connection signal="pressed" from="Game/fetch_nft" to="." method="_on_fetch_nft_pressed"]
+[connection signal="pressed" from="Entrance/connect" to="." method="_on_connect_pressed"]
