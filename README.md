@@ -11,6 +11,7 @@ This is an example dApp for connecting Godot Game Engine with Sage's WalletConne
 npm install
 npm run dev
 ```
+After setting up your React server, you still cannot access the Godot Game Engine directly. You need to export the game first.
 
 2 Godot
 2.1 Open Godot and load the project located in the godot-sage-dapp-example folder.
