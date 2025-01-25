@@ -18,11 +18,17 @@ npm run dev
 
 Screenshot
 Before connecting to WalletConnect
-![image](https://github.com/user-attachments/assets/1177d2ee-7828-4d29-a6fe-d69715fd9a92)
+![image](https://github.com/user-attachments/assets/41241c7f-0c00-495c-9c96-76d78aff26bb)
+![image](https://github.com/user-attachments/assets/6b21183d-4303-4332-9c6d-1e8f22eb0f62)
+
 
 After connection established
-![image](https://github.com/user-attachments/assets/ba1efe1e-e572-4f1b-a442-e8f3a8e4bce0)
+![image](https://github.com/user-attachments/assets/66890a8a-db35-4c69-8e79-c672eeab40aa)
+
+Send XCH
+![image](https://github.com/user-attachments/assets/1645b58f-47e6-4879-824d-cc3cce65a0de)
 
 Fetch NFTs in wallet
-![image](https://github.com/user-attachments/assets/397d96c6-8d74-4d96-8afb-1153ed6264a7)
+![image](https://github.com/user-attachments/assets/21ff8d1e-e82b-45a3-b289-4e0eb83ca2d8)
+
 
