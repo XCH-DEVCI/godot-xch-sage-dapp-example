@@ -9,7 +9,9 @@ This is an example dApp for connecting Godot Game Engine with Sage's WalletConne
 
 ```bash
 npm install
-npm run dev
+npm run build
+npm install -g serve
+serve dist
 ```
 After setting up your React server, you still cannot access the Godot Game Engine directly. You need to export the game first.
 
