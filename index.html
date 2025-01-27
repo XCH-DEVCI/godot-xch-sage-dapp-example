@@ -7,29 +7,6 @@
     <link id="-gd-engine-icon" rel="icon" type="image/png" href="/godot-sage-dapp-example/export/index.icon.png" />
     <link rel="apple-touch-icon" href="/godot-sage-dapp-example/export/index.apple-touch-icon.png" />
     <link rel="manifest" href="/godot-sage-dapp-example/export/index.manifest.json" />
-    <!-- Godot Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const scriptSrc = '/godot-sage-dapp-example/export/index.js';
-
-            // Check if the script is already loaded
-            if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
-                const externalScript = document.createElement('script');
-                externalScript.setAttribute('src', scriptSrc);
-                externalScript.setAttribute('type', 'text/javascript');
-                externalScript.onload = () => {
-                    console.log('Script loaded successfully.');
-                };
-                externalScript.onerror = () => {
-                    console.error('Failed to load the script:', scriptSrc);
-                };
-
-                document.head.appendChild(externalScript);
-            } else {
-                console.log('Script already loaded.');
-            }
-        });
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Godot-XCH WalletConnect dApp</title>
     <style>
@@ -71,102 +48,117 @@
 
     <!-- React Script -->
     <script type="module" src="/src/index.tsx"></script>
-
+    
+    <!-- Godot Script -->
     <script>
+        // Wait for the DOM to load before executing
+        document.addEventListener('DOMContentLoaded', () => {
+            const scriptSrc = '/godot-sage-dapp-example/export/index.js';
+    
+            // Check if the script is already loaded
+            if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+                const externalScript = document.createElement('script');
+                externalScript.setAttribute('src', scriptSrc);
+                externalScript.setAttribute('type', 'text/javascript');
+                externalScript.onload = () => {
+                    console.log('Script loaded successfully.');
+    
+                    // Initialize the engine after the script is loaded
+                    initializeEngine();
+                };
+                externalScript.onerror = () => {
+                    console.error('Failed to load the script:', scriptSrc);
+                };
+    
+                document.head.appendChild(externalScript);
+            } else {
+                console.log('Script already loaded.');
+    
+                // Initialize the engine immediately if the script is already loaded
+                initializeEngine();
+            }
+        });
+    
+        // Godot configuration object
         const GODOT_CONFIG = {
-            "args": [],
-            "canvasResizePolicy": 2,
-            "ensureCrossOriginIsolationHeaders": true,
-            "executable": "/godot-sage-dapp-example/export/index",
-            "experimentalVK": false,
-            "fileSizes": {
-                "/godot-sage-dapp-example/export/index.pck": 7728,
-                "/godot-sage-dapp-example/export/index.wasm": 1619701
+            args: [],
+            canvasResizePolicy: 2,
+            ensureCrossOriginIsolationHeaders: true,
+            executable: '/godot-sage-dapp-example/export/index',
+            experimentalVK: false,
+            fileSizes: {
+                '/godot-sage-dapp-example/export/index.pck': 7728,
+                '/godot-sage-dapp-example/export/index.wasm': 1619701,
             },
-            "focusCanvas": true,
-            "gdextensionLibs": [],
-            "serviceWorker": "/godot-sage-dapp-example/export/index.service.worker.js",
-            "mainPack": "/godot-sage-dapp-example/export/index.pck"
+            focusCanvas: true,
+            gdextensionLibs: [],
+            serviceWorker: '/godot-sage-dapp-example/export/index.service.worker.js',
+            mainPack: '/godot-sage-dapp-example/export/index.pck',
         };
         const GODOT_THREADS_ENABLED = false;
-        const engine = new Engine(GODOT_CONFIG);
-
-        (function () {
+    
+        // Function to initialize the Godot Engine
+        function initializeEngine() {
+            if (typeof Engine === 'undefined' || typeof GODOT_CONFIG === 'undefined') {
+                console.error('Engine or GODOT_CONFIG is not defined.');
+                return;
+            }
+    
+            const engine = new Engine(GODOT_CONFIG);
+            console.log('Engine initialized:', engine);
+    
+            setupEngine(engine);
+        }
+    
+        // Function to setup the Godot Engine and manage its lifecycle
+        function setupEngine(engine) {
             const statusOverlay = document.getElementById('status');
             const statusProgress = document.getElementById('status-progress');
             const statusNotice = document.getElementById('status-notice');
-
+    
             let initializing = true;
             let statusMode = '';
-
+    
             function setStatusMode(mode) {
-                if (statusMode === mode || !initializing) {
-                    return;
-                }
+                if (statusMode === mode || !initializing) return;
+    
                 if (mode === 'hidden') {
                     statusOverlay.style.visibility = 'hidden';
                     initializing = false;
                     return;
                 }
+    
                 statusOverlay.style.visibility = 'visible';
                 statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
                 statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
                 statusMode = mode;
             }
-
+    
             function setStatusNotice(text) {
-                while (statusNotice.lastChild) {
-                    statusNotice.removeChild(statusNotice.lastChild);
-                }
+                statusNotice.textContent = ''; // Clear existing content
                 const lines = text.split('\n');
                 lines.forEach((line) => {
-                    statusNotice.appendChild(document.createTextNode(line));
+                    const lineElement = document.createTextNode(line);
+                    statusNotice.appendChild(lineElement);
                     statusNotice.appendChild(document.createElement('br'));
                 });
             }
-
+    
             function displayFailureNotice(err) {
                 console.error(err);
-                if (err instanceof Error) {
-                    setStatusNotice(err.message);
-                } else if (typeof err === 'string') {
-                    setStatusNotice(err);
-                } else {
-                    setStatusNotice('An unknown error occurred');
-                }
+                setStatusNotice(err instanceof Error ? err.message : String(err));
                 setStatusMode('notice');
                 initializing = false;
             }
-
-            const missing = Engine.getMissingFeatures({
-                threads: GODOT_THREADS_ENABLED,
-            });
-
-            if (missing.length !== 0) {
-                if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
-                    Promise.race([
-                        navigator.serviceWorker.getRegistration().then((registration) => {
-                            if (registration != null) {
-                                return Promise.reject(new Error('Service worker already exists.'));
-                            }
-                            return registration;
-                        }).then(() => engine.installServiceWorker()),
-                        new Promise((resolve) => {
-                            setTimeout(() => resolve(), 2000);
-                        }),
-                    ]).catch((err) => {
-                        console.error('Error while registering service worker:', err);
-                    }).then(() => {
-                        window.location.reload();
-                    });
-                } else {
-                    const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
-                    displayFailureNotice(missingMsg + missing.join('\n'));
-                }
+    
+            const missingFeatures = Engine.getMissingFeatures({ threads: GODOT_THREADS_ENABLED });
+    
+            if (missingFeatures.length !== 0) {
+                handleMissingFeatures(missingFeatures, engine, displayFailureNotice);
             } else {
                 setStatusMode('progress');
                 engine.startGame({
-                    'onProgress': function (current, total) {
+                    onProgress: (current, total) => {
                         if (current > 0 && total > 0) {
                             statusProgress.value = current;
                             statusProgress.max = total;
@@ -177,10 +169,34 @@
                     },
                 }).then(() => {
                     setStatusMode('hidden');
-                }, displayFailureNotice);
+                }).catch(displayFailureNotice);
             }
-        }());
-    </script>
+        }
+    
+        // Function to handle missing features
+        function handleMissingFeatures(missingFeatures, engine, errorHandler) {
+            const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
+            console.error(missingMsg + missingFeatures.join('\n'));
+    
+            if (GODOT_CONFIG.serviceWorker && GODOT_CONFIG.ensureCrossOriginIsolationHeaders && 'serviceWorker' in navigator) {
+                Promise.race([
+                    navigator.serviceWorker.getRegistration().then((registration) => {
+                        if (registration != null) {
+                            return Promise.reject(new Error('Service worker already exists.'));
+                        }
+                        return engine.installServiceWorker();
+                    }),
+                    new Promise((resolve) => setTimeout(resolve, 2000)),
+                ])
+                .catch((err) => console.error('Error while registering service worker:', err))
+                .then(() => {
+                    window.location.reload();
+                });
+            } else {
+                errorHandler(missingMsg + missingFeatures.join('\n'));
+            }
+        }
+    </script>    
 </body>
 
 </html>
