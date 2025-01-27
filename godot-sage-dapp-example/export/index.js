@@ -634,7 +634,7 @@ const InternalConfig = function (initConfig) { // eslint-disable-line no-unused-
  * @module Engine
  * @header Web export JavaScript reference
  */
-const Engine = (function () {
+export const Engine = (function () {
 	const preloader = new Preloader();
 
 	let loadPromise = null;
@@ -903,6 +903,8 @@ const Engine = (function () {
 
 	return SafeEngine;
 }());
+
 if (typeof window !== 'undefined') {
 	window['Engine'] = Engine;
 }
+
