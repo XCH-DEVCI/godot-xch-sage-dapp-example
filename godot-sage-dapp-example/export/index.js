@@ -908,3 +908,8 @@ if (typeof window !== 'undefined') {
 	window['Engine'] = Engine;
 }
 
+if (typeof window !== 'undefined') {
+    window.Engine = Engine;
+}
+
+export default Engine;
