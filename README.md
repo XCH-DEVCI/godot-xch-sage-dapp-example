@@ -1,7 +1,10 @@
 <svg version="1.1" width="64" height="64" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-    [<!-- Add your SVG elements here -->](http://www.w3.org/2000/svg](https://github.com/XCH-DEVCI/godot-xch-sage-dapp-example/blob/main/public/vite.svg)
-    <rect width="64" height="64" fill="blue" />
+    <!-- Link to an external page -->
+    <a href="https://github.com/XCH-DEVCI/godot-xch-sage-dapp-example/blob/main/public/vite.svg" target="_blank">
+        <rect width="64" height="64" fill="blue" />
+    </a>
 </svg>
+
 
 # Godot-XCH-dapp-example
 
