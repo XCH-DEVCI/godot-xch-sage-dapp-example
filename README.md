@@ -1,9 +1,5 @@
-<svg version="1.1" width="64" height="64" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-    <!-- Link to an external page -->
-    <a href="https://raw.githubusercontent.com/XCH-DEVCI/godot-xch-sage-dapp-example/1cb9728ab2eb114498d82c60598113863edd5870/public/vite.svg" target="_blank">
-        <rect width="64" height="64" fill="blue" />
-    </a>
-</svg>
+![vite-Recovered](https://github.com/user-attachments/assets/7c38b8b7-6873-4888-b379-b12799dded88)
+
 
 
 # Godot-XCH-dapp-example
