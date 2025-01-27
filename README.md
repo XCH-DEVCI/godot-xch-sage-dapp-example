@@ -4,7 +4,7 @@
 
 # Godot-XCH-dapp-example
 
-This is an example dApp for connecting Godot Game Engine with Sage's WalletConnect commands.
+This is an example dApp for connecting Godot Game Engine with Sage's WalletConnect commands. You can check what it looks like here: https://godot-xch-sage-dapp-example.onrender.com/
 
 ## Setup
 
