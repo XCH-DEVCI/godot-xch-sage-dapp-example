@@ -907,10 +907,3 @@ const Engine = (function () {
 if (typeof window !== 'undefined') {
 	window['Engine'] = Engine;
 }
-
-if (typeof window !== 'undefined') {
-    window.Engine = Engine;
-}
-
-export { Engine }; // Named export
-export default Engine; // Default export
