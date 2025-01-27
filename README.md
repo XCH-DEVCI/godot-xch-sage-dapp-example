@@ -1,6 +1,10 @@
+![vite-Recovered](https://github.com/user-attachments/assets/7c38b8b7-6873-4888-b379-b12799dded88)
+
+
+
 # Godot-XCH-dapp-example
 
-This is an example dApp for connecting Godot Game Engine with Sage's WalletConnect commands.
+This is an example dApp for connecting Godot Game Engine with Sage's WalletConnect commands. You can check what it looks like here: https://godot-xch-sage-dapp-example.onrender.com/
 
 ## Setup
 
@@ -9,7 +13,9 @@ This is an example dApp for connecting Godot Game Engine with Sage's WalletConne
 
 ```bash
 npm install
-npm run dev
+npm run build
+npm install -g serve
+serve dist
 ```
 After setting up your React server, you still cannot access the Godot Game Engine directly. You need to export the game first.
 
