@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link id="-gd-engine-icon" rel="icon" type="image/png" href="/assets/index.icon-44e7564e.png" />
+    <link rel="apple-touch-icon" href="/assets/index.apple-touch-icon-23da881f.png" />
+    <link rel="manifest" href="data:application/json;base64,eyJiYWNrZ3JvdW5kX2NvbG9yIjoiIzAwMDAwMCIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiaWNvbnMiOlt7InNpemVzIjoiMTQ0eDE0NCIsInNyYyI6ImluZGV4LjE0NHgxNDQucG5nIiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic2l6ZXMiOiIxODB4MTgwIiwic3JjIjoiaW5kZXguMTgweDE4MC5wbmciLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzaXplcyI6IjUxMng1MTIiLCJzcmMiOiJpbmRleC41MTJ4NTEyLnBuZyIsInR5cGUiOiJpbWFnZS9wbmcifV0sIm5hbWUiOiJnb2RvdC1zYWdlLWRhcHAtZXhhbXBsZSIsIm9yaWVudGF0aW9uIjoiYW55Iiwic3RhcnRfdXJsIjoiLi9pbmRleC5odG1sIn0=" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chia WalletConnect dApp</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            /* Optional: Ensure text is visible on a dark background */
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* Prevent scrollbars from appearing */
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/index-8ef226df.js"></script>
+</head>
+
+<body>
+    <!-- React Section -->
+    <div id="root">
+        <!-- React content will render here -->
+    </div>
+
+    <!-- Godot Section -->
+    <div id="godot-container">
+        <canvas id="canvas">
+            Your browser does not support the canvas tag.
+        </canvas>
+        <noscript>
+            Your browser does not support JavaScript.
+        </noscript>
+        <div id="status">
+            <img id="status-splash" src="/assets/index-3cb4495c.png" alt="Status Splash" />
+            <progress id="status-progress"></progress>
+            <div id="status-notice"></div>
+        </div>
+    </div>
+
+    <!-- React Script -->
+    
+
+    <!-- Godot Script -->
+    <script src="/godot-sage-dapp-example/export/index.js"></script>
+
+    <script>
+        const GODOT_CONFIG = {
+            "args": [],
+            "canvasResizePolicy": 2,
+            "ensureCrossOriginIsolationHeaders": true,
+            "executable": "/godot-sage-dapp-example/export/index",
+            "experimentalVK": false,
+            "fileSizes": {
+                "/godot-sage-dapp-example/export/index.pck": 7728,
+                "/godot-sage-dapp-example/export/index.wasm": 1619701
+            },
+            "focusCanvas": true,
+            "gdextensionLibs": [],
+            "serviceWorker": "/godot-sage-dapp-example/export/index.service.worker.js",
+            "mainPack": "/godot-sage-dapp-example/export/index.pck"
+        };
+        const GODOT_THREADS_ENABLED = false;
+        const engine = new Engine(GODOT_CONFIG);
+
+        (function () {
+            const statusOverlay = document.getElementById('status');
+            const statusProgress = document.getElementById('status-progress');
+            const statusNotice = document.getElementById('status-notice');
+
+            let initializing = true;
+            let statusMode = '';
+
+            function setStatusMode(mode) {
+                if (statusMode === mode || !initializing) {
+                    return;
+                }
+                if (mode === 'hidden') {
+                    statusOverlay.style.visibility = 'hidden';
+                    initializing = false;
+                    return;
+                }
+                statusOverlay.style.visibility = 'visible';
+                statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
+                statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
+                statusMode = mode;
+            }
+
+            function setStatusNotice(text) {
+                while (statusNotice.lastChild) {
+                    statusNotice.removeChild(statusNotice.lastChild);
+                }
+                const lines = text.split('\n');
+                lines.forEach((line) => {
+                    statusNotice.appendChild(document.createTextNode(line));
+                    statusNotice.appendChild(document.createElement('br'));
+                });
+            }
+
+            function displayFailureNotice(err) {
+                console.error(err);
+                if (err instanceof Error) {
+                    setStatusNotice(err.message);
+                } else if (typeof err === 'string') {
+                    setStatusNotice(err);
+                } else {
+                    setStatusNotice('An unknown error occurred');
+                }
+                setStatusMode('notice');
+                initializing = false;
+            }
+
+            const missing = Engine.getMissingFeatures({
+                threads: GODOT_THREADS_ENABLED,
+            });
+
+            if (missing.length !== 0) {
+                if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+                    Promise.race([
+                        navigator.serviceWorker.getRegistration().then((registration) => {
+                            if (registration != null) {
+                                return Promise.reject(new Error('Service worker already exists.'));
+                            }
+                            return registration;
+                        }).then(() => engine.installServiceWorker()),
+                        new Promise((resolve) => {
+                            setTimeout(() => resolve(), 2000);
+                        }),
+                    ]).catch((err) => {
+                        console.error('Error while registering service worker:', err);
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
+                    displayFailureNotice(missingMsg + missing.join('\n'));
+                }
+            } else {
+                setStatusMode('progress');
+                engine.startGame({
+                    'onProgress': function (current, total) {
+                        if (current > 0 && total > 0) {
+                            statusProgress.value = current;
+                            statusProgress.max = total;
+                        } else {
+                            statusProgress.removeAttribute('value');
+                            statusProgress.removeAttribute('max');
+                        }
+                    },
+                }).then(() => {
+                    setStatusMode('hidden');
+                }, displayFailureNotice);
+            }
+        }());
+    </script>
+</body>
+
+</html>
