@@ -1,0 +1,461 @@
+[gd_scene load_steps=7 format=3 uid="uid://btnd3152rtl7v"]
+
+[ext_resource type="Script" path="res://root_node.gd" id="1_lsdsu"]
+[ext_resource type="StyleBox" uid="uid://bdyii465q41i" path="res://button.tres" id="2_caaqw"]
+[ext_resource type="StyleBox" uid="uid://dlt7nfkdrosy7" path="res://disconnected_style.tres" id="3_cfgjb"]
+[ext_resource type="StyleBox" uid="uid://57pmvni0g1sp" path="res://blank.tres" id="4_btfke"]
+[ext_resource type="Texture2D" uid="uid://ccpxag23lgkgc" path="res://dummy_nft.png" id="5_md1u0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41t8m"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lsdsu")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 1296.0
+offset_bottom = 1048.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_41t8m")
+
+[node name="Status" type="Node2D" parent="."]
+position = Vector2(0, 2)
+
+[node name="status_panel" type="PanelContainer" parent="Status"]
+anchors_preset = -1
+anchor_left = -0.00625
+anchor_top = -0.0111111
+anchor_right = 0.785937
+anchor_bottom = 0.0111111
+offset_right = 1280.0
+offset_bottom = 80.0
+theme_override_styles/panel = ExtResource("2_caaqw")
+metadata/_edit_use_anchors_ = true
+
+[node name="connection_status_label" type="Label" parent="Status"]
+offset_left = 24.0
+offset_top = 21.0
+offset_right = 235.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "Connection Status:"
+metadata/_edit_use_anchors_ = true
+
+[node name="light_signal" type="Panel" parent="Status"]
+offset_left = 248.0
+offset_top = 27.0
+offset_right = 272.0
+offset_bottom = 51.0
+theme_override_styles/panel = ExtResource("3_cfgjb")
+metadata/_edit_use_anchors_ = true
+
+[node name="network_label" type="Label" parent="Status"]
+offset_left = 320.0
+offset_top = 21.0
+offset_right = 458.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "Network ID:"
+metadata/_edit_use_anchors_ = true
+
+[node name="networkID" type="Label" parent="Status"]
+offset_left = 472.0
+offset_top = 21.0
+offset_right = 642.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "Invalid"
+metadata/_edit_use_anchors_ = true
+
+[node name="app_label" type="Label" parent="Status"]
+offset_left = 641.0
+offset_top = 20.0
+offset_right = 779.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "App ID:"
+metadata/_edit_use_anchors_ = true
+
+[node name="app_ID" type="Label" parent="Status"]
+offset_left = 735.0
+offset_top = 20.0
+offset_right = 905.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "DEVCI's EXAMPLE Dapp"
+metadata/_edit_use_anchors_ = true
+
+[node name="connect" type="Button" parent="Status"]
+offset_left = 1096.0
+offset_top = 8.0
+offset_right = 1272.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("2_caaqw")
+theme_override_styles/disabled_mirrored = ExtResource("2_caaqw")
+theme_override_styles/disabled = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed = ExtResource("2_caaqw")
+theme_override_styles/hover_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover = ExtResource("2_caaqw")
+theme_override_styles/pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/pressed = ExtResource("2_caaqw")
+theme_override_styles/normal_mirrored = ExtResource("2_caaqw")
+theme_override_styles/normal = ExtResource("2_caaqw")
+text = "Connect"
+metadata/_edit_use_anchors_ = true
+
+[node name="disconnect" type="Button" parent="Status"]
+offset_left = 1096.0
+offset_top = 8.0
+offset_right = 1273.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("2_caaqw")
+theme_override_styles/disabled_mirrored = ExtResource("2_caaqw")
+theme_override_styles/disabled = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed = ExtResource("2_caaqw")
+theme_override_styles/hover_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover = ExtResource("2_caaqw")
+theme_override_styles/pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/pressed = ExtResource("2_caaqw")
+theme_override_styles/normal_mirrored = ExtResource("2_caaqw")
+theme_override_styles/normal = ExtResource("2_caaqw")
+text = "Disconnect"
+metadata/_edit_use_anchors_ = true
+
+[node name="Game" type="Node2D" parent="."]
+position = Vector2(0, 2)
+
+[node name="box0_entrance" type="Control" parent="Game"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="box" type="Panel" parent="Game/box0_entrance"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 190.0
+offset_right = 1152.0
+offset_bottom = 638.0
+theme_override_styles/panel = ExtResource("2_caaqw")
+
+[node name="announcement" type="Label" parent="Game/box0_entrance"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 214.0
+offset_right = 1119.0
+offset_bottom = 618.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "This is an example dapp using Godot as UI and connect to Sage Wallet through WallectConnect
+
+How to Enter the Game:
+(1) Click on Connect button in the upper-right corner.
+
+(2) Copy the WalletConnect UID displayed.
+
+(3) Open your Sage Wallet and navigate to Settings.
+
+(4) Paste the UID into the WalletConnect input field and click the Connect button."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="box1_options" type="Control" parent="Game"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="box" type="Panel" parent="Game/box1_options"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 86.0
+offset_right = 960.0
+offset_bottom = 168.0
+theme_override_styles/panel = ExtResource("2_caaqw")
+
+[node name="announcement" type="Label" parent="Game/box1_options"]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 109.0
+offset_right = 587.0
+offset_bottom = 143.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "Functions available:"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="go_to_box_2" type="Button" parent="Game/box1_options"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -14.35
+anchor_top = 5.0
+anchor_right = -14.35
+anchor_bottom = 5.0
+offset_left = 1158.0
+offset_top = -106.0
+offset_right = 1335.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("2_caaqw")
+theme_override_styles/disabled_mirrored = ExtResource("2_caaqw")
+theme_override_styles/disabled = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed = ExtResource("2_caaqw")
+theme_override_styles/hover_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover = ExtResource("2_caaqw")
+theme_override_styles/pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/pressed = ExtResource("2_caaqw")
+theme_override_styles/normal_mirrored = ExtResource("2_caaqw")
+theme_override_styles/normal = ExtResource("2_caaqw")
+text = "Send TXCH"
+metadata/_edit_use_anchors_ = true
+
+[node name="go_to_box_3" type="Button" parent="Game/box1_options"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -9.55
+anchor_top = 5.0
+anchor_right = -9.55
+anchor_bottom = 5.0
+offset_left = 1158.0
+offset_top = -106.0
+offset_right = 1335.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("2_caaqw")
+theme_override_styles/disabled_mirrored = ExtResource("2_caaqw")
+theme_override_styles/disabled = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed = ExtResource("2_caaqw")
+theme_override_styles/hover_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover = ExtResource("2_caaqw")
+theme_override_styles/pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/pressed = ExtResource("2_caaqw")
+theme_override_styles/normal_mirrored = ExtResource("2_caaqw")
+theme_override_styles/normal = ExtResource("2_caaqw")
+text = "Fetch NFT"
+metadata/_edit_use_anchors_ = true
+
+[node name="box2_send_xch" type="Control" parent="Game"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="box" type="Panel" parent="Game/box2_send_xch"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 174.0
+offset_right = 960.0
+offset_bottom = 566.0
+theme_override_styles/panel = ExtResource("2_caaqw")
+
+[node name="box2" type="Panel" parent="Game/box2_send_xch"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 243.0
+offset_right = 952.0
+offset_bottom = 323.0
+theme_override_styles/panel = ExtResource("2_caaqw")
+
+[node name="box3" type="Panel" parent="Game/box2_send_xch"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 382.0
+offset_right = 952.0
+offset_bottom = 446.0
+theme_override_styles/panel = ExtResource("2_caaqw")
+
+[node name="send_xch" type="Button" parent="Game/box2_send_xch"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 470.0
+offset_right = 753.0
+offset_bottom = 558.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("2_caaqw")
+theme_override_styles/disabled_mirrored = ExtResource("2_caaqw")
+theme_override_styles/disabled = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover_pressed = ExtResource("2_caaqw")
+theme_override_styles/hover_mirrored = ExtResource("2_caaqw")
+theme_override_styles/hover = ExtResource("2_caaqw")
+theme_override_styles/pressed_mirrored = ExtResource("2_caaqw")
+theme_override_styles/pressed = ExtResource("2_caaqw")
+theme_override_styles/normal_mirrored = ExtResource("2_caaqw")
+theme_override_styles/normal = ExtResource("2_caaqw")
+text = "Send TXCH"
+
+[node name="input1" type="TextEdit" parent="Game/box2_send_xch"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 253.0
+offset_right = 936.0
+offset_bottom = 313.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("4_btfke")
+theme_override_styles/focus = ExtResource("4_btfke")
+theme_override_styles/read_only = ExtResource("4_btfke")
+wrap_mode = 1
+text_direction = 1
+
+[node name="input2" type="TextEdit" parent="Game/box2_send_xch"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 398.0
+offset_right = 936.0
+offset_bottom = 446.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("4_btfke")
+theme_override_styles/focus = ExtResource("4_btfke")
+theme_override_styles/read_only = ExtResource("4_btfke")
+wrap_mode = 1
+
+[node name="signal_label2" type="Label" parent="Game/box2_send_xch"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 195.0
+offset_right = 550.0
+offset_bottom = 245.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "Recipient address"
+vertical_alignment = 1
+
+[node name="signal_label3" type="Label" parent="Game/box2_send_xch"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 334.0
+offset_right = 528.0
+offset_bottom = 384.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "Amount"
+vertical_alignment = 1
+
+[node name="box3_fetch_nft" type="Control" parent="Game"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="box" type="Panel" parent="Game/box3_fetch_nft"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 174.0
+offset_right = 632.0
+offset_bottom = 1022.0
+theme_override_styles/panel = ExtResource("2_caaqw")
+
+[node name="box2" type="Panel" parent="Game/box3_fetch_nft"]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 174.0
+offset_right = 1224.0
+offset_bottom = 1022.0
+theme_override_styles/panel = ExtResource("2_caaqw")
+
+[node name="output" type="TextEdit" parent="Game/box3_fetch_nft"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 238.0
+offset_right = 624.0
+offset_bottom = 1006.0
+theme_override_colors/font_placeholder_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_colors/font_readonly_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_colors/font_selected_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_colors/search_result_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("4_btfke")
+theme_override_styles/focus = ExtResource("4_btfke")
+theme_override_styles/read_only = ExtResource("4_btfke")
+editable = false
+wrap_mode = 1
+
+[node name="signal_label" type="Label" parent="Game/box3_fetch_nft"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 182.0
+offset_right = 440.0
+offset_bottom = 238.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "Metadata"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nft_label" type="Label" parent="Game/box3_fetch_nft"]
+layout_mode = 0
+offset_left = 783.0
+offset_top = 184.0
+offset_right = 1095.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0.0901961, 1, 0.443137, 1)
+theme_override_font_sizes/font_size = 24
+text = "NFT Display"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nft_container" type="ScrollContainer" parent="Game/box3_fetch_nft"]
+clip_contents = false
+custom_minimum_size = Vector2(520, 105)
+layout_mode = 0
+offset_left = 672.0
+offset_top = 174.0
+offset_right = 1204.0
+offset_bottom = 1006.0
+horizontal_scroll_mode = 0
+
+[node name="nft_display" type="GridContainer" parent="Game/box3_fetch_nft/nft_container"]
+layout_mode = 2
+columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="Game/box3_fetch_nft/nft_container/nft_display"]
+layout_mode = 2
+texture = ExtResource("5_md1u0")
+
+[node name="TextureRect2" type="TextureRect" parent="Game/box3_fetch_nft/nft_container/nft_display"]
+layout_mode = 2
+texture = ExtResource("5_md1u0")
+
+[node name="TextureRect3" type="TextureRect" parent="Game/box3_fetch_nft/nft_container/nft_display"]
+layout_mode = 2
+texture = ExtResource("5_md1u0")
+
+[node name="TextureRect4" type="TextureRect" parent="Game/box3_fetch_nft/nft_container/nft_display"]
+layout_mode = 2
+texture = ExtResource("5_md1u0")
+
+[connection signal="pressed" from="Status/connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="Status/disconnect" to="." method="_on_disconnect_pressed"]
+[connection signal="pressed" from="Game/box1_options/go_to_box_2" to="." method="_on_go_to_box_2_pressed"]
+[connection signal="pressed" from="Game/box1_options/go_to_box_3" to="." method="_on_go_to_box_3_pressed"]
+[connection signal="pressed" from="Game/box2_send_xch/send_xch" to="." method="_on_send_xch_pressed"]

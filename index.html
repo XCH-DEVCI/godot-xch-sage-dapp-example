@@ -7,6 +7,29 @@
     <link id="-gd-engine-icon" rel="icon" type="image/png" href="/godot-sage-dapp-example/export/index.icon.png" />
     <link rel="apple-touch-icon" href="/godot-sage-dapp-example/export/index.apple-touch-icon.png" />
     <link rel="manifest" href="/godot-sage-dapp-example/export/index.manifest.json" />
+    <!-- Godot Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scriptSrc = '/godot-sage-dapp-example/export/index.js';
+
+            // Check if the script is already loaded
+            if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+                const externalScript = document.createElement('script');
+                externalScript.setAttribute('src', scriptSrc);
+                externalScript.setAttribute('type', 'text/javascript');
+                externalScript.onload = () => {
+                    console.log('Script loaded successfully.');
+                };
+                externalScript.onerror = () => {
+                    console.error('Failed to load the script:', scriptSrc);
+                };
+
+                document.head.appendChild(externalScript);
+            } else {
+                console.log('Script already loaded.');
+            }
+        });
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Godot-XCH WalletConnect dApp</title>
     <style>
@@ -48,9 +71,6 @@
 
     <!-- React Script -->
     <script type="module" src="/src/index.tsx"></script>
-
-    <!-- Godot Script -->
-    <script src="/godot-sage-dapp-example/export/index.js"></script>
 
     <script>
         const GODOT_CONFIG = {

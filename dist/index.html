@@ -4,9 +4,32 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link id="-gd-engine-icon" rel="icon" type="image/png" href="/assets/index.icon-44e7564e.png" />
-    <link rel="apple-touch-icon" href="/assets/index.apple-touch-icon-23da881f.png" />
-    <link rel="manifest" href="data:application/json;base64,eyJiYWNrZ3JvdW5kX2NvbG9yIjoiIzAwMDAwMCIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiaWNvbnMiOlt7InNpemVzIjoiMTQ0eDE0NCIsInNyYyI6ImluZGV4LjE0NHgxNDQucG5nIiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic2l6ZXMiOiIxODB4MTgwIiwic3JjIjoiaW5kZXguMTgweDE4MC5wbmciLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzaXplcyI6IjUxMng1MTIiLCJzcmMiOiJpbmRleC41MTJ4NTEyLnBuZyIsInR5cGUiOiJpbWFnZS9wbmcifV0sIm5hbWUiOiJnb2RvdC1zYWdlLWRhcHAtZXhhbXBsZSIsIm9yaWVudGF0aW9uIjoiYW55Iiwic3RhcnRfdXJsIjoiLi9pbmRleC5odG1sIn0=" />
+    <link id="-gd-engine-icon" rel="icon" type="image/png" href="/godot-sage-dapp-example/export/index.icon.png" />
+    <link rel="apple-touch-icon" href="/godot-sage-dapp-example/export/index.apple-touch-icon.png" />
+    <link rel="manifest" href="/godot-sage-dapp-example/export/index.manifest.json" />
+    <!-- Godot Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scriptSrc = '/godot-sage-dapp-example/export/index.js';
+
+            // Check if the script is already loaded
+            if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+                const externalScript = document.createElement('script');
+                externalScript.setAttribute('src', scriptSrc);
+                externalScript.setAttribute('type', 'text/javascript');
+                externalScript.onload = () => {
+                    console.log('Script loaded successfully.');
+                };
+                externalScript.onerror = () => {
+                    console.error('Failed to load the script:', scriptSrc);
+                };
+
+                document.head.appendChild(externalScript);
+            } else {
+                console.log('Script already loaded.');
+            }
+        });
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Godot-XCH WalletConnect dApp</title>
     <style>
@@ -23,8 +46,8 @@
             /* Prevent scrollbars from appearing */
         }
     </style>
-  <script type="module" crossorigin src="/assets/index-8e8b5894.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/vendor-5c2c506d.js">
+  <script type="module" crossorigin src="/assets/index-cedd145a.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-818099cb.js">
 </head>
 
 <body>
@@ -42,7 +65,7 @@
             Your browser does not support JavaScript.
         </noscript>
         <div id="status">
-            <img id="status-splash" src="/assets/index-3cb4495c.png" alt="Status Splash" />
+            <img id="status-splash" src="/godot-sage-dapp-example/export/index.png" alt="Status Splash" />
             <progress id="status-progress"></progress>
             <div id="status-notice"></div>
         </div>
@@ -50,9 +73,6 @@
 
     <!-- React Script -->
     
-
-    <!-- Godot Script -->
-    <script src="/godot-sage-dapp-example/export/index.js"></script>
 
     <script>
         const GODOT_CONFIG = {
